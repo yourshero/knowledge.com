@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import HomeBannerIndex from './homeBanner/index'
+import './loginSuc.less'
 
 class Home extends Component {
     constructor(props) {
@@ -8,9 +8,11 @@ class Home extends Component {
     }
     render() { 
         return ( 
-            <Fragment>
-                <HomeBannerIndex />
-            </Fragment>
+            <div className="login-suc">
+                <h1>
+                    欢迎来到幕思城！
+                </h1>
+            </div>
          );
     }
 }
