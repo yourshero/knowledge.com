@@ -18,14 +18,14 @@ class Login extends Component {
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log('Received values of form: ', values);
-            axios.post('https://www.easy-mock.com/mock/5928eb3491470c0ac1fe660a/example/login')
-            .then((res)=>{
-                console.log(res.data.token)
-                this.saveLocalStorageToken(res.data.token)
-                this.setState({
-                    isLogin:true
+                axios.post('https://www.easy-mock.com/mock/5928eb3491470c0ac1fe660a/example/login')
+                .then((res)=>{
+                    console.log(res.data.token)
+                    this.saveLocalStorageToken(res.data.token)
+                    this.setState({
+                        isLogin:true
+                    })
                 })
-            })
           }
         });
       };

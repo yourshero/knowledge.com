@@ -19,6 +19,7 @@ const path = require('path')
     // 配置路径别名
   addWebpackAlias({
     ["pages"]: path.resolve(__dirname, "src/pages"),
-    ["components"]: path.resolve(__dirname, "src/components")
+    ["components"]: path.resolve(__dirname, "src/components"),
+    ["@"]: path.resolve(__dirname, "src")
   }),
  );
