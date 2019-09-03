@@ -17,22 +17,25 @@ import EcCourseIndex from 'pages/ecCourse/index'
 import EcAskIndex from 'pages/ecAsk/index'
 import EcToolIndex from 'pages/ecTool/index'
 import EcMarketIndex from 'pages/ecMarket/index'
-
+import store from '@/store'
+import { Provider } from 'react-redux'
 const { Header, Footer, Content } = Layout;
 
 ReactDOM.render(
-        <Router>
-        <Layout>
-        <Header><HeaderContainer /></Header>
-        <Content>
-                        <Route path="/" exact component={Home} />
-                        <Route path="/ecWiki/" exact component={EcWikiIndex} />  
-                        <Route path="/ecCourse/" exact component={EcCourseIndex} />  
-                        <Route path="/ecAsk/" exact component={EcAskIndex} />  
-                        <Route path="/ecTool/" exact component={EcToolIndex} />  
-                        <Route path="/ecMarket/" exact component={EcMarketIndex} />  
-        </Content>
-        <Footer><FooterContainer /></Footer>
-        </Layout>
-        </Router>
+        <Provider store={store}>
+                <Router>
+                <Layout>
+                <Header><HeaderContainer /></Header>
+                <Content>
+                                <Route path="/" exact component={Home} />
+                                <Route path="/ecWiki/" exact component={EcWikiIndex} />  
+                                <Route path="/ecCourse/" exact component={EcCourseIndex} />  
+                                <Route path="/ecAsk/" exact component={EcAskIndex} />  
+                                <Route path="/ecTool/" exact component={EcToolIndex} />  
+                                <Route path="/ecMarket/" exact component={EcMarketIndex} />  
+                </Content>
+                <Footer><FooterContainer /></Footer>
+                </Layout>
+                </Router>
+        </Provider>
         ,document.getElementById('root'))

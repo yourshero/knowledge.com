@@ -3,32 +3,56 @@ import { Form,Input, Tooltip, Icon,Button  } from 'antd';
 import LoginSuc from '../loginSuc/loginSuc.js'
 import axios from 'axios'
 import './login.less'
+import store from '@/store'
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            isLogin:false
-         }
+        this.state = store.getState()
     }
+  //   getBannerList=async ()=>{
+  //     console.log(111111111);
+  //     let list = await API.getBannerList()
+  //     console.log(list)
+  // }
     saveLocalStorageToken = val =>{
-       return localStorage.setItem("token",val);
+      console.log(val)
+       localStorage.setItem("token",val);
+    }
+    getLocalStorageToken = () =>{
+      let tokenVal = localStorage.setItem("token");
+      if(tokenVal){
+        this.setState({
+          isLogin:true
+        })
+      }
     }
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
             console.log('Received values of form: ', values);
-                axios.post('https://www.easy-mock.com/mock/5928eb3491470c0ac1fe660a/example/login')
-                .then((res)=>{
-                    console.log(res.data.token)
-                    this.saveLocalStorageToken(res.data.token)
-                    this.setState({
-                        isLogin:true
-                    })
-                })
+            axios.get('https://www.easy-mock.com/mock/5928eb3491470c0ac1fe660a/example/login',
+            {
+              params:{
+                user:values.username,
+                pwd:values.username
+              }
+            })
+            .then(res=>{
+              console.log(res)
+              this.saveLocalStorageToken(res.data.token)
+              this.setState({
+                isLogin:true
+              })
+            })
           }
         });
       };
+      componentDidMount(){
+        if ( typeof(localStorage.Items) == "token" ){
+          this.getLocalStorageToken()
+        }
+      }
     render() { 
         const { getFieldDecorator } = this.props.form;
         return ( 
